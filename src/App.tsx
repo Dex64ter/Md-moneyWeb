@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Dashboard } from "./components/Dashboard";
+import { Header } from "./components/Header";
+import { GlobalStyle } from "./styles/global";
 
-function App() {
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Dashboard />
+      <GlobalStyle/>
+    </>
   );
 }
 
-export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+  ? Por que utilizar 'export' ao invés de 'export default'?
+  * Quando eu utilizo "export default", o local onde eu usar o meu componente eu poderei importa-lo com o nome
+  * que eu quiser enquanto que usando apenas o "export", eu sou obrigado a usar o nome do componente isso evita
+  * erros de lógica na aplicação por eu saber qual componente estou usando pelo nome, sem ter problema de ter 
+  * dois componentes com o mesmo nome
+  * 
+  * Outro ponto é q a importação do editor fica mais aprimorada e inteligente com apenas o "export" do que com
+  * "export default" *
+  */
+
+  // ! tipo de estilização
+  // import styled from 'styled-components'
+  
+  // const Tittle = styled.h1`
+  //   font-size: 64px;
+  //   color: #8257d6;
+  
+  // `
