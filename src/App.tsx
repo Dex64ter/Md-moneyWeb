@@ -1,16 +1,50 @@
+import { useState } from "react";
+import Modal from "react-modal";
 import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import { GlobalStyle } from "./styles/global";
 
+Modal.setAppElement('#root'); // acessibilidade
+
 export function App() {
+  // useState é uma função que retorna um array com 2 posições
+  // [valor do estado, função para atualizar o valor do estado]
+  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false); // variável que indica se o modal está aberto ou não
+
+  // quando cria-se novas funções que executará uma ação do usuário iniciamos com 'handle'
+  function handleOpenNewTransactionModal() {
+    setIsNewTransactionModalOpen(true);
+  }
+
+  function handleCloseNewTransactionModal() {
+    setIsNewTransactionModalOpen(false);
+  }
+  
   return (
     <>
-      <Header />
+      <Header
+        // quando precisa-se que um estado de um componente seja alterado
+        // por um componente filho, podemos passar uma função para alterar essa informação
+        onOpenNewTransactionModal={handleOpenNewTransactionModal}
+      />
+
       <Dashboard />
-      <GlobalStyle/>
+      
+      {/* o Modal ele pode ir em qualquer lugar da aplicação pois
+       ele sempre exibe-se na tela inteira, no body da aplicação*/}
+      <Modal
+        isOpen={isNewTransactionModalOpen}
+        onRequestClose={handleCloseNewTransactionModal}
+      >
+        <h1>Cadastrar transação</h1>
+      </Modal>
+
+      <GlobalStyle />
     </>
   );
 }
+
+
 
 
 
@@ -39,11 +73,11 @@ export function App() {
   * "export default" *
   */
 
-  // ! tipo de estilização
-  // import styled from 'styled-components'
-  
-  // const Tittle = styled.h1`
-  //   font-size: 64px;
-  //   color: #8257d6;
-  
-  // `
+// ! tipo de estilização
+// import styled from 'styled-components'
+
+// const Tittle = styled.h1`
+//   font-size: 64px;
+//   color: #8257d6;
+
+// `
