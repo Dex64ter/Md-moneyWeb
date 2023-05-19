@@ -1,23 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createServer } from 'miragejs';
+import { Model, createServer } from 'miragejs';
 import { App} from './App';
 
 createServer({
+  // Criando uma tabela no banco de dados
+  models: {
+    transaction: Model,
+  },
+
+  // O schema é o banco de dados
   routes() {
     this.namespace = 'api';
 
     // Quando houver um get em /transactions, retornar o objeto abaixo
     this.get('/transactions', () => {
-      return [
-        {
-          id: 1,
-          title: 'Freelance de website',
-          amount: 400,
-          type: 'deposit',
-        }
-      ]
+      return this.schema.all('transaction');
     });
+
+    this.post('/transactions', (schema, request) => {
+      const data = JSON.parse(request.requestBody);
+
+      return schema.create('transaction', data);
+
+    })
   }
 })
 
