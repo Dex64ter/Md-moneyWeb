@@ -9,6 +9,29 @@ createServer({
     transaction: Model,
   },
 
+  seeds(server) {
+    server.db.loadData({
+      transactions: [
+        {
+          id: 1,
+          title: 'Freelancer de website',
+          type: 'deposit',
+          category: 'Dev',
+          amount: 6000,
+          createAt: new Date('2023-02-21 10:00:00'),
+        },
+        {
+          id: 2,
+          title: 'Conta de internet',
+          type: 'withdraw',
+          category: 'Casa',
+          amount: 100,
+          createAt: new Date('2023-05-23 08:00:00'),
+        },
+      ],
+    })
+  },
+
   // O schema é o banco de dados
   routes() {
     this.namespace = 'api';
