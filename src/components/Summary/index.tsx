@@ -19,7 +19,7 @@ export function Summary(){
 //   }
 // </TransactionsContext.Consumer>
 
-  const transactions = useContext(TransactionsContext);
+  const { transactions } = useContext(TransactionsContext);
   console.log(transactions);
 
 
