@@ -4,7 +4,7 @@ import { Dashboard } from "./components/Dashboard";
 import { Header } from "./components/Header";
 import { GlobalStyle } from "./styles/global";
 import { NewTransactionModal } from "./components/NewTransactionModal";
-import { TransactionsContext } from "./transactionsContext";
+import {TransactionsProvider } from "./transactionsContext";
 
 
 Modal.setAppElement('#root'); // acessibilidade
@@ -24,7 +24,9 @@ export function App() {
   }
   
   return (
-    <TransactionsContext.Provider value={[]}>
+    // TransactionsProvider é um componente que envolve todos os outros componentes
+    // e nele que fica o estado que será compartilhado entre os componentes
+    <TransactionsProvider>
       <Header
         // quando precisa-se que um estado de um componente seja alterado
         // por um componente filho, podemos passar uma função para alterar essa informação
@@ -39,7 +41,7 @@ export function App() {
       <Dashboard />
 
       <GlobalStyle />
-    </TransactionsContext.Provider>
+    </TransactionsProvider>
   );
 }
 
