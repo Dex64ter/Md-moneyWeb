@@ -2,8 +2,8 @@ import { Container } from "./styles";
 import incomes from '../../assets/entradas.svg';
 import outs from '../../assets/saidas.svg';
 import total from '../../assets/total.svg';
-import { TransactionsContext } from "../../transactionsContext";
-import React, { useContext } from "react";
+import { useTransactions } from "../../hooks/useTransactions";
+
 
 export function Summary(){
 
@@ -19,7 +19,8 @@ export function Summary(){
   //   }
   // </TransactionsContext.Consumer>
 
-  const { transactions } = useContext(TransactionsContext);
+  // como é agora:
+  const { transactions } = useTransactions();
 
   // Primeira opção:
   // const totalDeposits = transactions.reduce((acc, transaction) =>  {
